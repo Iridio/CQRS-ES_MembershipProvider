@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F7FCAFBC-6F9E-4D69-B918-2AF9F66FDA3A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Iridio.Infrastructure</RootNamespace>
+    <AssemblyName>Iridio.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.2.6.2.859\lib\NET40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>..\packages\Autofac.2.6.2.859\lib\NET40\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=2.6.2.859, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.Mvc3.2.6.2.859\lib\NET40\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonDomain">
+      <HintPath>..\packages\CommonDomain.1.4.0\lib\net40\CommonDomain.dll</HintPath>
+    </Reference>
+    <Reference Include="EventStore">
+      <HintPath>..\packages\EventStore.3.0.11326.44\lib\net40\EventStore.dll</HintPath>
+    </Reference>
+    <Reference Include="EventStore.Serialization.Json">
+      <HintPath>..\packages\EventStore.Serialization.Json.3.0.11326.44\lib\net40\EventStore.Serialization.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.0.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration.cs" />
+    <Compile Include="Domain\AggregateFactory.cs" />
+    <Compile Include="InProcessBus.cs" />
+    <Compile Include="IServiceBus.cs" />
+    <Compile Include="Modules\BusModule.cs" />
+    <Compile Include="Modules\CommandHandlersModule.cs" />
+    <Compile Include="Modules\EventHandlersModule.cs" />
+    <Compile Include="Modules\ReadModelModule.cs" />
+    <Compile Include="Modules\ServicesModule.cs" />
+    <Compile Include="Modules\SqlServerEventStoreModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterEventHandlerInBus.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Iridio.DomainModel\Iridio.DomainModel.csproj">
+      <Project>{0F50527F-8630-4784-B27E-BCCC0021A710}</Project>
+      <Name>Iridio.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Iridio.Messages\Iridio.Messages.csproj">
+      <Project>{79981CEF-A64A-4FB6-8E88-4CDC4753F2A0}</Project>
+      <Name>Iridio.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Iridio.ReadModel.NHibernate\Iridio.ReadModel.NHibernate.csproj">
+      <Project>{9B0F321D-2AA6-4DA8-9777-87CC6E2099EE}</Project>
+      <Name>Iridio.ReadModel.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Iridio.ReadModel\Iridio.ReadModel.csproj">
+      <Project>{E2720477-E174-4159-8BF0-AC53796DF528}</Project>
+      <Name>Iridio.ReadModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

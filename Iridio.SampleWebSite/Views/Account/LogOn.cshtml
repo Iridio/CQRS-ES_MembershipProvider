@@ -1,0 +1,27 @@
+﻿@model Iridio.SampleWebSite.Models.LogOnModel
+@{
+  ViewBag.Title = "Log On";
+}
+<h2>
+  Log On</h2>
+<p>
+  Please enter your user name and password.
+</p>
+<p>If you don't have an account you can @Html.ActionLink("register", "Register", "Account")</p>
+@Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+  @Html.LabelFor(m => m.UserName)
+  @Html.TextBoxFor(m => m.UserName, new { placeholder = "Insert your login" })
+  @Html.ValidationMessageFor(m => m.UserName)
+  @Html.LabelFor(m => m.Password)
+  @Html.PasswordFor(m => m.Password, new { placeholder = "Insert your password" })
+  @Html.ValidationMessageFor(m => m.Password)
+  <label class="checkbox">
+    @Html.CheckBoxFor(m => m.RememberMe)
+    @Iridio.Resources.WebSite.ViewModels.RememberMe
+  </label>
+  <button type="submit" class="btn btn-primary">
+    Log On</button>
+}

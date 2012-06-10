@@ -1,0 +1,18 @@
+﻿<div class="btn-group pull-right">
+  @if (Request.IsAuthenticated)
+  {
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user">
+    </i>
+      @User.Identity.Name
+      <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li>@Html.ActionLink(Iridio.Resources.WebSite.Views.AccountChangePasswordMenuTitle, "ChangePassword", "Account")</li>
+      <li class="divider"></li>
+      <li>@Html.ActionLink("Sign Out", "LogOff", "Account")</li>
+    </ul>
+  }
+  else
+  {
+    @Html.ActionLink("Log On", "LogOn", "Account")
+  }
+</div>

@@ -1,0 +1,21 @@
+﻿@{
+  //TODO: Move this in a MenuViewModel that return something like Model.MenuItem.Selected
+  string activeController = ViewContext.RouteData.Values["Controller"] as string;
+}
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+        class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+      </a>
+      @Html.ActionLink("Sample website", "Index", "Home", new { @class = "brand" })
+      @Html.Partial("_AccountMenuPartial")
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li @if (activeController == "Home") { <text>class="active"</text> }>@Html.ActionLink("Home", "Index", "Home")</li>
+          @*<li @if (activeController == "Other") { <text>class="active"</text> }>@Html.ActionLink("Other", "Index", "Other")</li>*@
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BF95E5E8-4966-4647-928A-E7C55117EF2B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Iridio.SampleWebSite.Tests</RootNamespace>
+    <AssemblyName>Iridio.SampleWebSite.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AccountControllerTests.cs" />
+    <Compile Include="Controllers\BaseControllerTests.cs" />
+    <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestHelpers.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Iridio.Infrastructure\Iridio.Infrastructure.csproj">
+      <Project>{F7FCAFBC-6F9E-4D69-B918-2AF9F66FDA3A}</Project>
+      <Name>Iridio.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Iridio.MembershipProvider\Iridio.MembershipProvider.csproj">
+      <Project>{ACF7C359-62FE-48CB-93D0-09ACF6615D28}</Project>
+      <Name>Iridio.MembershipProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Iridio.Messages\Iridio.Messages.csproj">
+      <Project>{79981CEF-A64A-4FB6-8E88-4CDC4753F2A0}</Project>
+      <Name>Iridio.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Iridio.ReadModel\Iridio.ReadModel.csproj">
+      <Project>{E2720477-E174-4159-8BF0-AC53796DF528}</Project>
+      <Name>Iridio.ReadModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Iridio.Resources.WebSite\Iridio.Resources.WebSite.csproj">
+      <Project>{B9BEBA5C-CA96-4426-A982-98172E2598A4}</Project>
+      <Name>Iridio.Resources.WebSite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Iridio.Resources\Iridio.Resources.csproj">
+      <Project>{DA87FAD0-4A1D-4D8C-90EA-44EAEB9359CF}</Project>
+      <Name>Iridio.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Iridio.SampleWebSite\Iridio.SampleWebSite.csproj">
+      <Project>{5333449D-72CB-4FE3-9378-ED44E4F2962A}</Project>
+      <Name>Iridio.SampleWebSite</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
