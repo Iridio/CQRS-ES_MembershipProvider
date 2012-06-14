@@ -178,6 +178,8 @@ namespace Iridio.SampleWebSite.Models
       {
         var user = usersService.GetUserByName(userName, _provider.ApplicationName);
         if (user == null) throw new ArgumentException(Resources.WebSite.Controllers.UserNullAfterSave);
+		
+		//TODO: Refactor and move this logic in the EventHandler
         usersService.SendRegisterCongratulationsToEmail(user);
       }
       return status;
@@ -215,6 +217,7 @@ namespace Iridio.SampleWebSite.Models
         if (currentUser == null)
           return false;
         string oldPassword = currentUser.GetPassword();
+		//TODO: Refactor and move the sendmail logic to the EventHandler
         if (currentUser.ChangePassword(oldPassword, newPassword))
           return usersService.SendResetPasswordToEmail(currentUser.Email, newPassword);
         else
