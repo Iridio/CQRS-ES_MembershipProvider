@@ -36,6 +36,7 @@ namespace Iridio.DomainModel.Entities
 
     private void Apply(UserPasswordChanged @event)
     {
+	  //TODO: I can omit this piece of code?. If we need to do some business validation while reconstructing the events I need to ste all the values
       Password = @event.NewPassword;
       LastPasswordChangedDate = @event.LastPasswordChangedDate;
     }
