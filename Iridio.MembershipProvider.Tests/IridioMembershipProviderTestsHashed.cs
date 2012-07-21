@@ -37,26 +37,20 @@ namespace Iridio.MembershipProvider.Tests
     [ExpectedException(typeof(ProviderException))]
     public void GetPassword_GivenGoodUserAndGoodAnswer_ThrowsException()
     {
-      var name = "GoodUser";
-      var answer = "GoodAnswer";
-      _nhProv.GetPassword(name, answer);
+      _nhProv.GetPassword("GoodUser", "GoodAnswer");
     }
 
     [Test]
     public void ResetPassword_GoodUser_QandARequired_ReturnsNewPassword()
     {
-      var name = "HashUser";
-      var answer = "GoodAnswer";
-      var actual = _nhProv.ResetPassword(name, answer);
+      var actual = _nhProv.ResetPassword("HashUser", "GoodAnswer");
       Assert.AreNotEqual("", actual);
     }
 
     [Test]
     public void ValidateUser_GivenGoodUserGoodPassword_ReturnsTrue()
     {
-      var userName = "HashUser";
-      var userPass = "GoodPass";
-      var actual = _nhProv.ValidateUser(userName, userPass);
+      var actual = _nhProv.ValidateUser("HashUser", "GoodPass");
       Assert.IsTrue(actual);
     }
   }

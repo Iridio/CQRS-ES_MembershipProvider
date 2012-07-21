@@ -38,18 +38,13 @@ namespace Iridio.MembershipProvider.Tests
     [ExpectedException(typeof(MembershipPasswordException))]
     public void GetPassword_GivenGoodUserAndBadAnswer_WithRequireAnswer_ThrowsException()
     {
-      var name = "EncryptUser";
-      var answer = "BadAnswer";
-      _nhProv.GetPassword(name, answer);
+      _nhProv.GetPassword("EncryptUser", "BadAnswer");
     }
 
     [Test]
     public void ChangePassword_GoodUserGoodPass_ReturnsTrue()
     {
-      var user = "EncryptUser";
-      var oldpass = "GoodPass";
-      var newpass = "ABC123!?";
-      var actual = _nhProv.ChangePassword(user, oldpass, newpass);
+      var actual = _nhProv.ChangePassword("EncryptUser", "GoodPass", "ABC123!?");
       Assert.IsTrue(actual);
     }
 
@@ -66,36 +61,28 @@ namespace Iridio.MembershipProvider.Tests
     [Test]
     public void GetPassword_GivenGoodUserAndGoodAnswer_ReturnsPassword()
     {
-      var name = "EncryptUser";
-      var answer = "GoodAnswer";
-      var expected = "GoodPass";
-      var actual = _nhProv.GetPassword(name, answer);
-      Assert.AreEqual(expected, actual);
+      var actual = _nhProv.GetPassword("EncryptUser", "GoodAnswer");
+      Assert.AreEqual("GoodPass", actual);
     }
 
     [Test]
     [ExpectedException(typeof(ProviderException))]
     public void ResetPassword_NullAnswer_QandARequired_ThrowsException()
     {
-      var name = "GoodUser";
-      _nhProv.ResetPassword(name, null);
+      _nhProv.ResetPassword("GoodUser", null);
     }
 
     [Test]
     [ExpectedException(typeof(MembershipPasswordException))]
     public void ResetPassword_BadAnswer_QandARequired_ThrowsException()
     {
-      var name = "EncryptUser";
-      var answer = "BadAnswer";
-      _nhProv.ResetPassword(name, answer);
+      _nhProv.ResetPassword("EncryptUser", "BadAnswer");
     }
 
     [Test]
     public void ResetPassword_GoodUser_QandARequired_ReturnsNewPassword()
     {
-      var name = "EncryptUser";
-      var answer = "GoodAnswer";
-      var actual = _nhProv.ResetPassword(name, answer);
+      var actual = _nhProv.ResetPassword("EncryptUser", "GoodAnswer");
       Assert.AreNotEqual("", actual);
     }
   }

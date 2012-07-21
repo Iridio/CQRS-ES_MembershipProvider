@@ -67,10 +67,7 @@ namespace Iridio.MembershipProvider.Tests
     [Test]
     public void ChangePassword_GoodUserGoodPass_ReturnsTrue()
     {
-      var User = "GoodUser";
-      var oldpass = "GoodPass";
-      var newpass = "ABC123!?";
-      var actual = _nhProv.ChangePassword(User, oldpass, newpass);
+      var actual = _nhProv.ChangePassword("GoodUser", "GoodPass", "ABC123!?");
       Assert.IsTrue(actual);
       serviceBus.Verify(x => x.Send(It.Is<ChangeUserPassword>(cmd => cmd.AggregateId == Utilities.Guid1 && cmd.NewPassword == "ABC123!?")), Times.Once());
     }
@@ -79,20 +76,14 @@ namespace Iridio.MembershipProvider.Tests
     [ExpectedException(typeof(MembershipPasswordException))]
     public void ChangePassword_GoodUserBadPass_ThrowsException()
     {
-      var User = "GoodUser";
-      var oldpass = "GoodPass";
-      var newpass = "Bad";
-      var actual = _nhProv.ChangePassword(User, oldpass, newpass);
+      _nhProv.ChangePassword("GoodUser", "GoodPass", "Bad");
       serviceBus.Verify(x => x.Send(It.IsAny<ChangeUserPassword>()), Times.Never());
     }
 
     [Test]
     public void ChangePassword_BadUserBadPass_ReturnsFalse()
     {
-      var User = "GoodUser";
-      var oldpass = "BadPass";
-      var newpass = "Bad";
-      var actual = _nhProv.ChangePassword(User, oldpass, newpass);
+      var actual = _nhProv.ChangePassword("GoodUser", "BadPass", "Bad");
       Assert.IsFalse(actual);
       serviceBus.Verify(x => x.Send(It.IsAny<ChangeUserPassword>()), Times.Never());
     }
@@ -102,11 +93,7 @@ namespace Iridio.MembershipProvider.Tests
     [Test]
     public void ChangePasswordQuestionAndAnswer_GoodUser_ReturnsTrue()
     {
-      var User = "GoodUser";
-      var pass = "GoodPass";
-      var question = "Good";
-      var answer = "Answer";
-      var actual = _nhProv.ChangePasswordQuestionAndAnswer(User, pass, question, answer);
+      var actual = _nhProv.ChangePasswordQuestionAndAnswer("GoodUser", "GoodPass", "Good", "Answer");
       Assert.IsTrue(actual);
       serviceBus.Verify(x => x.Send(It.Is<ChangeUserPasswordQuestionAndAnswer>(cmd => cmd.AggregateId == Utilities.Guid1 && cmd.NewPasswordQuestion == "Good" && cmd.NewPasswordAnswer == "Answer")), Times.Once());
     }
@@ -114,11 +101,7 @@ namespace Iridio.MembershipProvider.Tests
     [Test]
     public void ChangePasswordQuestionAndAnswer_BadUser_ReturnsFalse()
     {
-      var User = "BadUser";
-      var pass = "BadPass";
-      var question = "Good";
-      var answer = "Answer";
-      var actual = _nhProv.ChangePasswordQuestionAndAnswer(User, pass, question, answer);
+      var actual = _nhProv.ChangePasswordQuestionAndAnswer("BadUser", "BadPass", "Good", "Answer");
       Assert.IsFalse(actual);
       serviceBus.Verify(x => x.Send(It.IsAny<ChangeUserPasswordQuestionAndAnswer>()), Times.Never());
     }
@@ -248,11 +231,10 @@ namespace Iridio.MembershipProvider.Tests
     }
 
     [Test]
-    [ExpectedException(typeof(MemberAccessException))]
+    [ExpectedException(typeof(Exception))]
     public void DeleteUser_ExceptionUser_ThrowsException()
     {
-      var Username = "ExceptionUser";
-      _nhProv.DeleteUser(Username, true);
+      _nhProv.DeleteUser("ExceptionUser", true);
     }
     #endregion
 
@@ -291,7 +273,7 @@ namespace Iridio.MembershipProvider.Tests
     }
 
     [Test]
-    [ExpectedException(typeof(MemberAccessException))]
+    [ExpectedException(typeof(NullReferenceException))]
     public void FindUserByEmail_GivenException_ThrowsMemberAccessException()
     {
       var email = "ExceptionUser";
@@ -335,7 +317,7 @@ namespace Iridio.MembershipProvider.Tests
     }
 
     [Test]
-    [ExpectedException(typeof(MemberAccessException))]
+    [ExpectedException(typeof(Exception))]
     public void FindUserByName_GivenException_ThrowsMemberAccessException()
     {
       var Name = "ExceptionUser";
@@ -371,11 +353,11 @@ namespace Iridio.MembershipProvider.Tests
     }
 
     [Test]
-    [ExpectedException(typeof(MemberAccessException))]
+    [ExpectedException(typeof(Exception))]
     public void GetAllUsers_GivenExceptionUser_ThrowsException()
     {
       var tot = -1;
-      var actual = _nhProv.GetAllUsers(2, 99, out tot);
+      _nhProv.GetAllUsers(2, 99, out tot);
     }
     #endregion
 
@@ -406,7 +388,7 @@ namespace Iridio.MembershipProvider.Tests
     }
 
     [Test]
-    [ExpectedException(typeof(MemberAccessException))]
+    [ExpectedException(typeof(Exception))]
     public void GetNumberOfUsersOnline_GivenExceptionUser_ThrowsException()
     {
       var tmp = (MembershipSection)ConfigurationManager.GetSection("system.web/membership");
@@ -415,7 +397,7 @@ namespace Iridio.MembershipProvider.Tests
       repo.Setup(v => v.GetNumberOfUsersOnline(It.IsAny<DateTime>(), config["applicationName"])).Throws(new Exception());
       _nhProv = new IridioMembershipProvider(serviceBus.Object, repo.Object);
       _nhProv.Initialize("", config);
-      var actual = _nhProv.GetNumberOfUsersOnline();
+      _nhProv.GetNumberOfUsersOnline();
     }
     #endregion
 
@@ -441,7 +423,7 @@ namespace Iridio.MembershipProvider.Tests
     }
 
     [Test]
-    [ExpectedException(typeof(MemberAccessException))]
+    [ExpectedException(typeof(MembershipPasswordException), ExpectedMessage = "The supplied user name is not found.")]
     public void GetPassword_GivenBadUser_ThrowsException()
     {
       var name = "BadUser";
@@ -470,7 +452,7 @@ namespace Iridio.MembershipProvider.Tests
     }
 
     [Test]
-    [ExpectedException(typeof(MemberAccessException))]
+    [ExpectedException(typeof(Exception))]
     public void GetUser_BadUser_ThrowsException()
     {
       var name = "ExceptionUser";
@@ -485,16 +467,15 @@ namespace Iridio.MembershipProvider.Tests
     }
 
     [Test]
-    [ExpectedException(typeof(MemberAccessException))]
+    [ExpectedException(typeof(InvalidCastException))]
     public void GetUser_BadUserId_ThrowsException()
     {
-      var id = 999;
-      _nhProv.GetUser(id, true);
+      _nhProv.GetUser(123, true);//esplode in quanto non Guid
     }
     #endregion
 
     #region Test GetUserNameByEmail Method
-    [Test, ExpectedException(typeof(MemberAccessException))]
+    [Test, ExpectedException(typeof(Exception))]
     public void GetUserNameByEmail_ExceptionUser_ThrowsException()
     {
       var email = "ExceptionEmail";
@@ -577,11 +558,10 @@ namespace Iridio.MembershipProvider.Tests
     }
 
     [Test]
-    [ExpectedException(typeof(MemberAccessException))]
+    [ExpectedException(typeof(Exception))]
     public void UnlockUser_ExceptionUser_ThrowsException()
     {
-      var name = "ExceptionUser";
-      _nhProv.UnlockUser(name);
+      _nhProv.UnlockUser("ExceptionUser");
     }
     #endregion
 
@@ -596,7 +576,7 @@ namespace Iridio.MembershipProvider.Tests
     }
 
     [Test]
-    [ExpectedException(typeof(MemberAccessException))]
+    [ExpectedException(typeof(MemberAccessException), ExpectedMessage = "User can not be null")]
     public void UpdateUser_BadUser_ThrowsException()
     {
       _nhProv.UpdateUser(null);
@@ -635,12 +615,10 @@ namespace Iridio.MembershipProvider.Tests
     }
 
     [Test]
-    [ExpectedException(typeof(MemberAccessException))]
+    [ExpectedException(typeof(Exception))]
     public void ValidateUser_GivenException_ThrowsMemberAccessException()
     {
-      var UserName = "ExceptionUser";
-      var UserPass = "BadPass";
-      var actual = _nhProv.ValidateUser(UserName, UserPass);
+      _nhProv.ValidateUser("ExceptionUser", "BadPass");
     }
     #endregion
 

@@ -176,7 +176,7 @@ namespace Iridio.MembershipProvider.Tests
       mockRepo.Setup(v => v.FindUsersByName("GoodName", 0, 99, appName)).Returns(GetStubUsers(1));
       mockRepo.Setup(v => v.FindUsersByName("BadName", 0, 99, appName)).Returns(new List<User>());
       mockRepo.Setup(v => v.FindUsersByName("DupName", 0, 99, appName)).Returns(GetStubUsers(2));
-      mockRepo.Setup(v => v.FindUsersByName("ExceptionMail", 0, 99, appName)).Throws(new Exception());
+      mockRepo.Setup(v => v.FindUsersByName("ExceptionUser", 0, 99, appName)).Throws(new Exception());
       mockRepo.Setup(v => v.GetUserNameByEmail("NewEmail", appName)).Returns("");
       mockRepo.Setup(v => v.GetUserNameByEmail("DupEmail", appName)).Returns("DupUser");
       mockRepo.Setup(v => v.GetUserNameByEmail("ExceptionEmail", appName)).Throws(new Exception());
