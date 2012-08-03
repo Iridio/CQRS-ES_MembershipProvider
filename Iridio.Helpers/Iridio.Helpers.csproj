@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{ACF7C359-62FE-48CB-93D0-09ACF6615D28}</ProjectGuid>
+    <ProjectGuid>{34B48EA1-94E4-4FB4-A11A-AA3580FC287B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Iridio.MembershipProvider</RootNamespace>
-    <AssemblyName>Iridio.MembershipProvider</AssemblyName>
+    <RootNamespace>Iridio.Helpers</RootNamespace>
+    <AssemblyName>Iridio.Helpers</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,18 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.2.6.2.859\lib\NET40\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac.Configuration">
-      <HintPath>..\packages\Autofac.2.6.2.859\lib\NET40\Autofac.Configuration.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,30 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IridioMembershipProvider.cs" />
-    <Compile Include="IridioMembershipUser.cs" />
+    <Compile Include="CombGuid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Iridio.Helpers\Iridio.Helpers.csproj">
-      <Project>{34B48EA1-94E4-4FB4-A11A-AA3580FC287B}</Project>
-      <Name>Iridio.Helpers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Iridio.Infrastructure\Iridio.Infrastructure.csproj">
-      <Project>{F7FCAFBC-6F9E-4D69-B918-2AF9F66FDA3A}</Project>
-      <Name>Iridio.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Iridio.Messages\Iridio.Messages.csproj">
-      <Project>{79981CEF-A64A-4FB6-8E88-4CDC4753F2A0}</Project>
-      <Name>Iridio.Messages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Iridio.ReadModel\Iridio.ReadModel.csproj">
-      <Project>{E2720477-E174-4159-8BF0-AC53796DF528}</Project>
-      <Name>Iridio.ReadModel</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

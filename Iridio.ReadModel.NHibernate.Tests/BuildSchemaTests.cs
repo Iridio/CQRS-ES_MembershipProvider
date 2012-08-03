@@ -5,7 +5,7 @@ namespace Iridio.ReadModel.NHibernate.Tests
   [TestFixture]
   public class BuildSchemaTests
   {
-    private static string sqlConnection = @"Data Source=.\sqlexpress;initial catalog=Iridio;Integrated Security=SSPI";
+    private static string sqlConnection = @"Data Source=.\sqlexpress;initial catalog=IridioMembershipProviderCQRS;Integrated Security=SSPI";
     private static INHSessionBuilder sessionBuilder;
 
     [SetUp]

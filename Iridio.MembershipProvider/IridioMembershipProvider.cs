@@ -12,6 +12,7 @@ using Iridio.Infrastructure;
 using Iridio.Messages.Commands;
 using Iridio.ReadModel.Abstracts;
 using Iridio.ReadModel.Dtos;
+using Iridio.Helpers;
 
 namespace Iridio.MembershipProvider
 {
@@ -307,7 +308,8 @@ namespace Iridio.MembershipProvider
       {
         try
         {
-          var userId = Guid.NewGuid();
+          //ComGuid to prevent fragmentation on clustered PK with Guids
+          var userId = CombGuid.GetNewCombGuid(); 
           serviceBus.Send(new CreateUser(userId, username, EncodePassword(password), email, isApproved, pApplicationName));
           if ((passwordQuestion != null) && (passwordAnswer != null))
             serviceBus.Send(new ChangeUserPasswordQuestionAndAnswer(userId, passwordQuestion, EncodePassword(passwordAnswer)));

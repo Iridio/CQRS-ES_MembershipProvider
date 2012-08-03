@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iridio.SampleWebSite", "Iri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iridio.SampleWebSite.Tests", "Iridio.SampleWebSite.Tests\Iridio.SampleWebSite.Tests.csproj", "{BF95E5E8-4966-4647-928A-E7C55117EF2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iridio.Helpers", "Iridio.Helpers\Iridio.Helpers.csproj", "{34B48EA1-94E4-4FB4-A11A-AA3580FC287B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,10 @@ Global
 		{BF95E5E8-4966-4647-928A-E7C55117EF2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF95E5E8-4966-4647-928A-E7C55117EF2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF95E5E8-4966-4647-928A-E7C55117EF2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34B48EA1-94E4-4FB4-A11A-AA3580FC287B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34B48EA1-94E4-4FB4-A11A-AA3580FC287B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34B48EA1-94E4-4FB4-A11A-AA3580FC287B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34B48EA1-94E4-4FB4-A11A-AA3580FC287B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
