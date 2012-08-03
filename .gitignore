@@ -167,3 +167,8 @@ pip-log.txt
 # NCrunch
 *.ncrunchsolution
 *.ncrunchproject
+
+# SqlServer
+*.mdf
+*.ldf
+
