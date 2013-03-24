@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iridio.MembershipProvider", "Iridio.MembershipProvider\Iridio.MembershipProvider.csproj", "{ACF7C359-62FE-48CB-93D0-09ACF6615D28}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iridio.MembershipProvider.Tests", "Iridio.MembershipProvider.Tests\Iridio.MembershipProvider.Tests.csproj", "{38F6E2A2-2656-40D5-B374-1C680E0CD8E3}"
