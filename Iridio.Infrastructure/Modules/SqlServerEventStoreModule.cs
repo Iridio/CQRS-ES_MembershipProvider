@@ -26,7 +26,7 @@ namespace Iridio.Infrastructure.Modules
     {
       return Wireup.Init()
         .UsingSqlPersistence(sqlConnectionStringName).InitializeStorageEngine()
-        .UsingJsonSerialization().Compress().EncryptWith(encryptionKey)
+        .UsingJsonSerialization().Compress() //.EncryptWith(encryptionKey)
         .UsingSynchronousDispatchScheduler().DispatchTo(bus)
         .Build();
     }
